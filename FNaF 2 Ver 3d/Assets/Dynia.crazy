@@ -1,0 +1,49 @@
+{
+    "Animatroniki": [
+        {
+            "name": "Toy Freddy",
+            "Włączony": true,
+            "Prędkość": 1
+        },
+        {
+            "name": "Toy Chica",
+            "Włączony": true,
+            "Prędkość": 1
+        },
+        {
+            "name": "Toy Bonnie",
+            "Włączony": true,
+            "Prędkość": 1
+        },
+        {
+            "name": "Withered Freddy",
+            "Włączony": false,
+            "Prędkość": 1
+        },
+        {
+            "name": "Withere Chica",
+            "Włączony": false,
+            "Prędkość": 1
+        },
+        {
+            "name": "Withered Bonnie",
+            "Włączony": false,
+            "Prędkość": 1
+        },
+        {
+            "name": "Withered Foxy",
+            "Włączony": false,
+            "Prędkość": 1
+        },
+        {
+            "name": "Mangle",
+            "Włączony": true,
+            "Prędkość": 1
+        },
+        {
+            "name": "Ballon Boy",
+            "Włączony": true,
+            "Prędkość": 1
+        }
+    ]
+}
