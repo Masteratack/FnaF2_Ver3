@@ -10,6 +10,12 @@ public class Menu : MonoBehaviour
     public Slider slider;
     public GameObject LoadingScreen;
     public Text ProgressText;
+    private void Start()
+    {
+        float x;
+        mixer.GetFloat("_Vol", out x);
+        slider.value = x;
+    }
     #region Guziki
     public void Play(int sceneIndex)
     {

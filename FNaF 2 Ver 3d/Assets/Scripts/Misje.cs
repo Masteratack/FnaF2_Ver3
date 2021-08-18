@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -7,63 +6,74 @@ using UnityEngine.SceneManagement;
 namespace Crazy.AI
 {
     public class Misje : MonoBehaviour
-{
-    public bool Morawiecki = false;
-    public NavMeshAgent agent;
-    public Vector3[] vector3;
-    private int index = 1;
-    private GameObject Player;
-    private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (index < vector3.Length)
+        public Mod.Animatronik animatronik { get; set; }
+        public bool Morawiecki = false;
+        public NavMeshAgent agent;
+        public Vector3[] vector3;
+        private int index = 1;
+        private GameObject Player;
+
+        private void Start()
         {
-            if (!Morawiecki)
+            if (animatronik != null)
             {
-                if (gameObject.transform.position.z == vector3[index].z && gameObject.transform.position.x == vector3[index].x)
+                if (animatronik.W³¹czony == false)
                 {
-                    StartCoroutine(Wait(20f));
-                    index++;
+                    Debug.Log(gameObject.name + "- Wy³¹czony");
+                    gameObject.SetActive(false);
                 }
-                agent.SetDestination(vector3[index]);
+                agent.speed = agent.speed * animatronik.Prêdkoœæ;
             }
-
+            Player = GameObject.FindGameObjectWithTag("Player");
         }
-        else
+        // Update is called once per frame
+        void Update()
         {
-            agent.SetDestination(Player.transform.position);
-        }
-
-    }
-    IEnumerator Wait(float time)
-    {
-        float timeCoundown = time;
-        while (timeCoundown <= 0)
-        {
-            timeCoundown -= Time.deltaTime;
-            yield return 0.3;
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Player")
-        {
-            if (Morawiecki)
+            if (index < vector3.Length-1)
             {
-                Debug.LogWarning("Morawiecki: P³aæ podatki!");
-                SceneManager.LoadScene(1);
+                if (!Morawiecki)
+                {
+                    if (gameObject.transform.position.z == vector3[index].z && gameObject.transform.position.x == vector3[index].x)
+                    {
+                        StartCoroutine(Wait(20f));
+                        index++;
+                    }
+                    agent.SetDestination(vector3[index]);
+                }
+
             }
             else
             {
-                Debug.Log("Z³apany przez " + gameObject.name);
-                SceneManager.LoadScene(1);
+                agent.SetDestination(Player.transform.position);
+            }
+
+        }
+        IEnumerator Wait(float time)
+        {
+            float timeCoundown = time;
+            while (timeCoundown <= 0)
+            {
+                timeCoundown -= Time.deltaTime;
+                yield return 0.3;
+            }
+        }
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.tag == "Player")
+            {
+                if (Morawiecki)
+                {
+                    Debug.LogWarning("Morawiecki: P³aæ podatki!");
+                    SceneManager.LoadScene(1);
+                }
+                else
+                {
+                    Debug.Log("Z³apany przez " + gameObject.name);
+                    SceneManager.LoadScene(1);
+                }
             }
         }
     }
-}
 }
 

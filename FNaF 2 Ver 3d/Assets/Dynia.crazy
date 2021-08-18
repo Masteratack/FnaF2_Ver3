@@ -44,6 +44,11 @@
             "name": "Ballon Boy",
             "Włączony": true,
             "Prędkość": 1
+        },
+        {
+            "name": "Edek",
+            "Włączony": true,
+            "Prędkość": 1.5
         }
     ]
 }

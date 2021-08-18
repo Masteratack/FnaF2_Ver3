@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Crazy.AI;
 
 public class Mod : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Mod : MonoBehaviour
     {
         public Animatronik[] Animatroniki;
     }
+    public Misje[] misje;
     public KlasaDwa dwa;
     // Start is called before the first frame update
     void Awake()
@@ -27,8 +29,31 @@ public class Mod : MonoBehaviour
         {
             return;
         }
-       string data= File.ReadAllText(FILE.FullName);
+        string data= File.ReadAllText(FILE.FullName);
+        if (data == ""||data==" "||data==null)
+        {
+            return;
+        }
         dwa = JsonUtility.FromJson<KlasaDwa>(data);
+        if (dwa.Animatroniki.Length==0)
+        {
+            return;
+        }
+        misje = FindObjectsOfType<Misje>();
+        if (misje.Length==0)
+        {
+            return;
+        }
+        foreach (Animatronik item in dwa.Animatroniki)
+        {
+            for (int i = 0; i < misje.Length; i++)
+            {
+                if (item.name == misje[i].gameObject.name)
+                {
+                    misje[i].animatronik = item;
+                }
+            }
+        }
     }
     #endregion
 }
