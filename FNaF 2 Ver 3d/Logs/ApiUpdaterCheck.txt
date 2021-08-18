@@ -1,0 +1,10 @@
+[api-updater (non-obsolete-error-filter)] 17.08.2021 23:25:02 : Starting C:/Users/Alan/Desktop/Alan/unity-gry/2020.3.10f1/Editor/Data/Tools/ScriptUpdater/APIUpdater.NonObsoleteApiUpdaterDetector.exe
+[api-updater (non-obsolete-error-filter)] 
+----------------------------------
+jit/startup time      : 33878,2443ms
+moved types parse time: 507ms
+candidates parse time : 186ms
+C# parse time         : 3758ms
+candidates check time : 351ms
+console write time    : 27ms
+
